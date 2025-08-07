@@ -17,6 +17,7 @@
     "test-server": "./scripts/test-server.sh"
   },
   "dependencies": {
+    "@google-cloud/secret-manager": "^6.1.0",
     "@langchain/community": "^0.0.27",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",

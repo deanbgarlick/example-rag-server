@@ -2,6 +2,41 @@
 
 This project demonstrates how to build a Retrieval-Augmented Generation (RAG) system using MongoDB's vector search capabilities.
 
+## Configuration
+
+The application supports two methods of configuration:
+
+### Local Environment Variables
+
+Create a `.env` file in the project root:
+```
+MONGODB_HOST=your_mongodb_host
+MONGODB_USERNAME=your_username
+MONGODB_PASSWORD=your_password
+MONGODB_DB_NAME=your_database_name
+MONGODB_COLLECTION_NAME=your_collection_name
+OPENAI_API_KEY=your_openai_key
+```
+
+### Google Cloud Secret Manager
+
+When running in Google Cloud (Compute Engine, Cloud Run, etc.):
+
+1. Enable the Secret Manager API in your project
+2. Create secrets with the same names as the environment variables above
+3. Ensure your service account has the `Secret Manager Secret Accessor` role
+
+The application will automatically detect it's running in GCP and use the appropriate project ID.
+
+For local development with GCP Secret Manager:
+1. Set up application default credentials:
+   ```bash
+   gcloud auth application-default login
+   ```
+2. Optionally set `GCP_PROJECT_ID` to override automatic detection
+
+The application will first try to load from local environment variables, then fall back to GCP Secret Manager if available.
+
 ## Setup
 
 Before testing the server endpoints, you need to run two setup scripts:

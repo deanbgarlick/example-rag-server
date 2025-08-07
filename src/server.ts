@@ -12,13 +12,19 @@ const port = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// MongoDB configuration from environment variables
+// Initialize configuration manager
+import { ConfigManager } from './config/ConfigManager';
+
+const configManager = new ConfigManager();
+await configManager.init();
+
+const config = configManager.getConfig();
 const mongoConfig: MongoConfig = {
-    host: process.env.MONGODB_HOST || '',
-    username: process.env.MONGODB_USERNAME || '',
-    password: process.env.MONGODB_PASSWORD || '',
-    dbName: process.env.MONGODB_DB_NAME || '',
-    collectionName: process.env.MONGODB_COLLECTION_NAME || ''
+    host: config.mongodbHost,
+    username: config.mongodbUsername,
+    password: config.mongodbPassword,
+    dbName: config.mongodbDbName,
+    collectionName: config.mongodbCollectionName
 };
 
 // Health check endpoint
