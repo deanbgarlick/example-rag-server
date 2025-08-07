@@ -2,6 +2,20 @@
 
 This project demonstrates how to build a Retrieval-Augmented Generation (RAG) system using MongoDB's vector search capabilities.
 
+## Setup
+
+Before testing the server endpoints, you need to run two setup scripts:
+
+1. Ingest the test data:
+   ```bash
+   npm run ingest
+   ```
+
+2. Create the necessary vector search index:
+   ```bash
+   npm run create-index
+   ```
+
 ## Testing the Server Endpoints
 
 The project includes a test script to verify the server endpoints are working correctly. To run the tests:
