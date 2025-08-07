@@ -1,0 +1,33 @@
+{
+  "name": "example-mongo-db-rag",
+  "version": "1.0.0",
+  "description": "MongoDB RAG Tutorial with TypeScript",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/generateResponses.js",
+    "ingest": "node dist/ingestData.js",
+    "test": "node dist/retrieveDocumentsTest.js",
+    "create-index": "node dist/ragVectorIndex.js",
+    "dev:start": "ts-node src/generateResponses.ts",
+    "dev:ingest": "ts-node src/ingestData.ts",
+    "dev:test": "ts-node src/retrieveDocumentsTest.ts",
+    "dev:create-index": "ts-node src/ragVectorIndex.ts"
+  },
+  "dependencies": {
+    "@langchain/community": "^0.0.27",
+    "@xenova/transformers": "^2.15.0",
+    "dotenv": "^17.2.1",
+    "langchain": "^0.1.37",
+    "openai": "^4.28.0",
+    "pdf-parse": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.9",
+    "mongodb": "^5.9.2",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.3",
+    "typescript": "^5.3.3"
+  }
+}
