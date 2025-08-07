@@ -1,10 +1,20 @@
 import { Embedder } from './embedders/Embedder';
-import { OpenAIEmbedder } from './embedders/OpenAIEmbedder';
 
-// Default embedder instance
-const defaultEmbedder = new OpenAIEmbedder();
+let embedder: Embedder | null = null;
 
-// Function to generate embeddings for a given data source
-export async function getEmbedding(data: string, embedder: Embedder = defaultEmbedder): Promise<number[]> {
+/**
+ * Initialize the embedding service with a configured embedder
+ */
+export function initializeEmbeddingService(configuredEmbedder: Embedder): void {
+    embedder = configuredEmbedder;
+}
+
+/**
+ * Get embeddings for the given text using the configured embedder
+ */
+export async function getEmbedding(data: string): Promise<number[]> {
+    if (!embedder) {
+        throw new Error('Embedding service not initialized. Call initializeEmbeddingService first.');
+    }
     return embedder.getEmbedding(data);
 }

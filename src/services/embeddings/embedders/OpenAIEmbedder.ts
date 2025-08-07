@@ -1,13 +1,19 @@
 import OpenAI from 'openai';
-import { Embedder } from './Embedder.js';
+import { Embedder } from './Embedder';
+import type { AppConfig } from '../../../types/AppConfig';
 
 export class OpenAIEmbedder implements Embedder {
     private client: OpenAI;
 
-    constructor(apiKey?: string) {
-        this.client = new OpenAI({
-            apiKey: apiKey || process.env.OPENAI_API_KEY
-        });
+    constructor(apiKey: string) {
+        if (!apiKey) {
+            throw new Error('OpenAI API key is required. Please ensure it is provided through configuration.');
+        }
+        this.client = new OpenAI({ apiKey });
+    }
+
+    static fromConfig(config: AppConfig): OpenAIEmbedder {
+        return new OpenAIEmbedder(config.openaiApiKey);
     }
 
     async getEmbedding(text: string): Promise<number[]> {
