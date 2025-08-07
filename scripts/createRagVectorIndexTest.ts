@@ -1,4 +1,4 @@
-import { createVectorIndex } from '../src/createVectorIndex';
+import { createVectorIndex } from '../src/services/mongo/indexOperations';
 import type { VectorIndexConfig } from '../src/types/VectorIndexConfig';
 
 async function run(): Promise<void> {

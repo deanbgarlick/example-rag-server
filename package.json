@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
+    "start": "tsx --require dotenv/config src/server.ts",
     "ingest": "tsx --require dotenv/config scripts/ingestDataTest.ts",
     "create-index": "tsx --require dotenv/config scripts/createIndexTest.ts",
     "retrieval": "tsx --require dotenv/config scripts/retrievalTest.ts",
@@ -16,11 +17,15 @@
   },
   "dependencies": {
     "@langchain/community": "^0.0.27",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
     "@xenova/transformers": "^2.15.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^5.1.0",
     "langchain": "^0.1.21",
     "mongodb": "^6.3.0",
-    "openai": "^4.28.0",
-    "dotenv": "^16.4.1"
+    "openai": "^4.28.0"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",

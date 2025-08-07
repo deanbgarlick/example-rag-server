@@ -1,5 +1,5 @@
-import { getQueryResults } from '../src/getQueryResults';
-import { getMongoConfig } from '../src/utils/config';
+import { getQueryResults } from '../src/services/documents/queryDocuments';
+import { getMongoConfig } from '../src/services/mongo/config';
 import OpenAI from 'openai';
 
 async function run(): Promise<void> {
@@ -13,7 +13,7 @@ async function run(): Promise<void> {
 
         // Build a string representation of the retrieved documents to use in the prompt
         let textDocuments = "";
-        documents.forEach(doc => {
+        documents.forEach((doc: { document: { pageContent: string } }) => {
             textDocuments += doc.document.pageContent;
         });
 

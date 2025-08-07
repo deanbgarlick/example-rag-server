@@ -1,7 +1,7 @@
 import { PDFLoader } from "langchain/document_loaders/fs/pdf";
 import * as fs from 'fs';
-import { insertDocuments, splitDocuments } from '../src/insertDocuments';
-import type { MongoConfig } from '../src/services/MongoService';
+import { insertDocuments, splitDocuments } from '../src/services/documents/documentOperations';
+import type { MongoConfig } from '../src/types/MongoConfig';
 
 async function run(): Promise<void> {
     if (!process.env.MONGODB_HOST || !process.env.MONGODB_USERNAME || !process.env.MONGODB_PASSWORD) {

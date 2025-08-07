@@ -1,5 +1,6 @@
-import { MongoService, MongoConfig } from './services/MongoService';
-import { getEmbedding } from './getEmbedding';
+import { MongoService } from '../mongo/MongoService';
+import { getEmbedding } from '../embeddings/embeddingService';
+import type { MongoConfig } from '../../types/MongoConfig';
 
 interface QueryDocument {
     document: {

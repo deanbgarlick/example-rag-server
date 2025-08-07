@@ -1,5 +1,5 @@
-import { getQueryResults } from '../src/getQueryResults.js';
-import { getMongoConfig } from '../src/utils/config.js';
+import { getQueryResults } from '../src/services/documents/queryDocuments';
+import { getMongoConfig } from '../src/services/mongo/config';
 import { QueryDocument } from '../src/types/QueryDocument';
 
 async function run(): Promise<void> {
