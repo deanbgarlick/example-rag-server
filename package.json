@@ -2,32 +2,29 @@
   "name": "example-mongo-db-rag",
   "version": "1.0.0",
   "description": "MongoDB RAG Tutorial with TypeScript",
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/generateResponses.js",
-    "ingest": "node dist/ingestData.js",
-    "test": "node dist/retrieveDocumentsTest.js",
-    "create-index": "node dist/ragVectorIndex.js",
-    "dev:start": "ts-node src/generateResponses.ts",
-    "dev:ingest": "ts-node src/ingestData.ts",
-    "dev:test": "ts-node src/retrieveDocumentsTest.ts",
-    "dev:create-index": "ts-node src/ragVectorIndex.ts"
+    "ingest": "tsx --require dotenv/config scripts/ingestDataTest.ts",
+    "create-index": "tsx --require dotenv/config scripts/createIndexTest.ts",
+    "retrieval": "tsx --require dotenv/config scripts/retrievalTest.ts",
+    "responses": "tsx --require dotenv/config scripts/generateResponsesTest.ts",
+    "drop-index": "tsx --require dotenv/config scripts/dropIndex.ts",
+    "drop-collection": "tsx --require dotenv/config scripts/dropCollection.ts",
+    "setup": "npm run ingest && npm run create-index"
   },
   "dependencies": {
     "@langchain/community": "^0.0.27",
     "@xenova/transformers": "^2.15.0",
-    "dotenv": "^17.2.1",
-    "langchain": "^0.1.37",
+    "langchain": "^0.1.21",
+    "mongodb": "^6.3.0",
     "openai": "^4.28.0",
-    "pdf-parse": "^1.1.1"
+    "dotenv": "^16.4.1"
   },
   "devDependencies": {
-    "@types/node": "^20.19.9",
-    "mongodb": "^5.9.2",
-    "ts-node": "^10.9.2",
-    "tsx": "^4.20.3",
+    "@types/node": "^20.11.19",
+    "tsx": "^4.7.1",
     "typescript": "^5.3.3"
   }
 }

@@ -1,32 +1,34 @@
-import { getQueryResults } from './getQueryResults';
+import { getQueryResults } from '../src/getQueryResults';
+import { getMongoConfig } from '../src/utils/config';
 import OpenAI from 'openai';
-
-interface DocumentWithPageContent {
-    document: {
-        pageContent: string;
-    };
-}
 
 async function run(): Promise<void> {
     try {
+        // Get MongoDB configuration
+        const mongoConfig = getMongoConfig();
+
         // Specify search query and retrieve relevant documents
-        const question: string = "In a few sentences, what are MongoDB's latest AI announcements?";
-        const documents: DocumentWithPageContent[] = await getQueryResults(question);
+        const question = "In a few sentences, what are MongoDB's latest AI announcements?";
+        const documents = await getQueryResults(question, mongoConfig);
 
         // Build a string representation of the retrieved documents to use in the prompt
-        let textDocuments: string = "";
-        documents.forEach((doc: DocumentWithPageContent) => {
+        let textDocuments = "";
+        documents.forEach(doc => {
             textDocuments += doc.document.pageContent;
         });
 
         // Create a prompt consisting of the question and context to pass to the LLM
-        const prompt: string = `Answer the following question based on the given context.
+        const prompt = `Answer the following question based on the given context.
             Question: {${question}}
             Context: {${textDocuments}}
         `;
 
         // Initialize OpenAI client
-        const client: OpenAI = new OpenAI({
+        if (!process.env.OPENAI_API_KEY) {
+            throw new Error('OpenAI API key is required');
+        }
+
+        const client = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
         });
 

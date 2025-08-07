@@ -1,17 +1,13 @@
-import { getQueryResults } from './getQueryResults.js';
-
-interface QueryDocument {
-    document: {
-        pageContent: string;
-    };
-}
+import { getQueryResults } from '../src/getQueryResults';
+import { getMongoConfig } from '../src/utils/config';
 
 async function run(): Promise<void> {
     try {
-        const query: string = "AI Technology";
-        const documents: QueryDocument[] = await getQueryResults(query);
+        const config = getMongoConfig();
+        const query = "AI Technology";
+        const documents = await getQueryResults(query, config);
         
-        documents.forEach((doc: QueryDocument) => {
+        documents.forEach(doc => {
             console.log("\nDocument content:", doc.document.pageContent);
         }); 
     } catch (err) {
