@@ -1,23 +1,6 @@
-import { MongoService, MongoConfig } from './services/MongoService';
-
-interface VectorSearchIndex {
-    name: string;
-    type: string;
-    definition: {
-        fields: {
-            type: string;
-            path: string;
-            similarity: string;
-            numDimensions: number;
-        }[];
-    };
-}
-
-export interface VectorIndexConfig extends MongoConfig {
-    indexName?: string;
-    dimensions?: number;
-    dropExisting?: boolean;
-}
+import { MongoService } from './services/MongoService';
+import type { VectorIndexConfig } from './types/VectorIndexConfig';
+import type { VectorSearchIndex } from './types/VectorSearchIndex';
 
 export async function createVectorIndex(config: VectorIndexConfig): Promise<string> {
     return MongoService.withClient(config, async (mongoService) => {

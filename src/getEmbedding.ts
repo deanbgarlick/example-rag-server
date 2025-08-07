@@ -1,5 +1,5 @@
-import { Embedder } from './embedders/Embedder.js';
-import { OpenAIEmbedder } from './embedders/OpenAIEmbedder.js';
+import { Embedder } from './embedders/Embedder';
+import { OpenAIEmbedder } from './embedders/OpenAIEmbedder';
 
 // Default embedder instance
 const defaultEmbedder = new OpenAIEmbedder();

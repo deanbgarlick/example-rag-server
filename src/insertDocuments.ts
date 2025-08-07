@@ -2,12 +2,9 @@ import { InsertManyResult } from 'mongodb';
 import { Document } from 'langchain/document';
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { getEmbedding } from './getEmbedding';
-import { MongoService, MongoConfig } from './services/MongoService';
-
-interface DocumentWithEmbedding {
-    document: Document;
-    embedding: number[];
-}
+import { MongoService } from './services/MongoService';
+import type { DocumentWithEmbedding } from './types/DocumentWithEmbedding';
+import type { MongoConfig } from './types/MongoConfig';
 
 export async function insertDocuments(
     documents: Document[],

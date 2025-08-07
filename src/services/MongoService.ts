@@ -1,12 +1,5 @@
 import { MongoClient, Db, Collection } from 'mongodb';
-
-export interface MongoConfig {
-    host: string;
-    username: string;
-    password: string;
-    dbName?: string;
-    collectionName?: string;
-}
+import type { MongoConfig } from '../types/MongoConfig';
 
 export class MongoService {
     private client: MongoClient;
